@@ -34,10 +34,10 @@
                       * include a way to remove individual listings
 
                 --> 
-                <tr ng-repeat = "listing in listings | filter:search"  ng-click = showDetails($index)>
+                <tr ng-repeat = "listing in listings | orderBy:sortType | filter:search"  ng-click = showDetails(listings.indexOf(listing))>
                 <td>{{listing.code}}</td>
                 <td>{{listing.name}}</td>
-                <td><button ng-click="deleteListing($index)">Remove</button></td>
+                <td><button ng-click="deleteListing(listings.indexOf(listing))">Remove</button></td>
                     </tr>
             </table>
           </div>
@@ -54,8 +54,8 @@
             <td><input type="text" class="form-control" ng-model = "code" placeholder="Code" style = "width : 300px;"></td>
             <td><input type="text" class="form-control" ng-model = "name" placeholder="Building Name" style = "width : 300px"></td>
             <td><input type="text" class="form-control" ng-model = "address" placeholder="Address" style = "width : 300px"></td>
-            <td><input type="text" class="form-control" ng-model = "lat" placeholder="Latitude" style = "width : 300px"></td>
-            <td><input type="text" class="form-control" ng-model = "lng" placeholder="Longitude" style = "width : 300px"></td>
+            <td><input type="text" class="form-control" ng-model = "latitude" placeholder="Latitude" style = "width : 300px"></td>
+            <td><input type="text" class="form-control" ng-model = "longitude" placeholder="Longitude" style = "width : 300px"></td>
             </div>
             </div>
         <div class="col-md-6">
@@ -68,8 +68,9 @@
 
              -->
               <td>
-              {{detailedInfo.address}}
-              {{detailedInfo.coordinates}}
+              {{detailedInfo.address}} <br />
+              {{detailedInfo.coordinates.latitude}}
+              {{detailedInfo.coordinates.longitude}}
               </td>
           </div>
         </div>

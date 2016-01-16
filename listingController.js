@@ -9,17 +9,18 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       as described in the assignment spec. 
      */
     $scope.addListing = function() {
+        var entry = createEntry();
         entry.code = $scope.code;
         entry.name = $scope.name;
-        entry.lat = $scope.lat;
-        entry.lng = $scope.lng;
+        entry.coordinates.latitude = parseFloat($scope.latitude);
+        entry.coordinates.longitude = parseFloat($scope.longitude);
         entry.address = $scope.address;
         $scope.listings.push(entry);
-        $scope.entry.code = '';
-        $scope.entry.name = '';
-        $scope.entry.lat = '';
-        $scope.entry.lng = '';
-        $scope.entry.address = '';
+        $scope.code = '';
+        $scope.name = '';
+        $scope.latitude = '';
+        $scope.longitude = '';
+        $scope.address = '';
     };
     $scope.deleteListing = function(index) {
          $scope.listings.splice(index, 1);
@@ -30,12 +31,15 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
   }
 ]);
 
-var entry = {
-     code : '',
-     name : '',
-     coordinates : {
-         lat : 0,
-         lng : 0,
-    },
-     address : ''
+function createEntry() {
+    var entry = {
+         code : '',
+         name : '',
+         coordinates : {
+             latitude : 0,
+             longitude : 0
+        },
+         address : ''
+    };
+    return entry;
 };
